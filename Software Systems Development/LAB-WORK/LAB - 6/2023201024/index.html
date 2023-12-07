@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gali Cricket Tournament</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="text/javascript" src="./scripts1.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Registration</h1>
+      <form onsubmit="submitAlart()" id="teamRegistrationForm">
+        <div class="mb-3">
+          <label for="teamName" class="form-label">Team Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="teamName"
+            name="teamName"
+            placeholder="Enter Team name"
+            required
+          />
+          <div id="teamNameError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="TCN" class="form-label">Team Coach Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="TCN"
+            name="TCN"
+            placeholder="Enter Coatch name"
+            required
+          />
+          <div id="TCNError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="EID" class="form-label">Team Email ID:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="EID"
+            placeholder="Enter email"
+            name="EID"
+            required
+          />
+          <div id="EIDError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="PASS" class="form-label">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            required="true"
+            id="PASS"
+            name="PASS"
+            placeholder="Enter password"
+          />
+          <div id="PASSError" class="text-danger"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="RPASS" class="form-label">Re-enter Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            required="true"
+            id="RPASS"
+            name="RPASS"
+            placeholder="Re-Enter password"
+          />
+          <div id="RPASSError" class="text-danger"></div>
+        </div>
+        <label class="control-label col-sm-2" for="cap">TeamCaptain:</label>
+        <div class="col-sm-10">          
+          <select name="cap" class="custom-select mr-sm-2" id="inlineFormCustomSelect" required>
+            <option value="">choose captain</option>
+            <option value="player2" >player1</option>
+            <option value="player3" >player2</option>
+            <option value="player4" >player3</option>
+            <option value="player5" >player4</option>
+          </select>
+        </div><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && (event.key == "m" || event.key == "M")) {
+          document.body.classList.toggle("dark-mode");
+        }
+      });
+
+      function validateTeamName() {
+        const teamNameInput = document.getElementById("teamName");
+        const teamNameError = document.getElementById("teamNameError");
+        const teamName = teamNameInput.value;
+
+        const uppercaseRegex = /[A-Z]/;
+        const numericRegex = /[0-9]/;
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (
+          uppercaseRegex.test(teamName) &&
+          numericRegex.test(teamName) &&
+          teamName !== ""
+        ) {
+          teamNameError.textContent = "";
+          return true;
+        } else {
+          teamNameError.textContent = "Invalid Username";
+          return false;
+        }
+      }
+
+      function validateTCN() {
+        const TCNInput = document.getElementById("TCN");
+        const TCNError = document.getElementById("TCNError");
+        const TCN = TCNInput.value;
+
+        if (TCN !== "") {
+          TCNError.textContent = "";
+          return true;
+        } else {
+          TCNError.textContent = "Enter Team coatch name";
+          return false;
+        }
+      }
+
+      function validatePASS() {
+        const PASSInput = document.getElementById("PASS");
+        const PASSError = document.getElementById("PASSError");
+        const PASS = PASSInput.value;
+
+        if (PASS !== "") {
+          PASSError.textContent = "";
+          return true;
+        } else {
+          PASSError.textContent = "Enter Password";
+          return false;
+        }
+      }
+
+      function validateRPASS() {
+        const PASSInput = document.getElementById("PASS");
+        const PASSError = document.getElementById("PASSError");
+        const PASS = PASSInput.value;
+        const RPASSInput = document.getElementById("RPASS");
+        const RPASSError = document.getElementById("RPASSError");
+        const RPASS = RPASSInput.value;
+
+        if (RPASS !== "" && RPASS == PASS) {
+          RPASSError.textContent = "";
+          return true;
+        } else {
+          RPASSError.textContent = "Re-enter pass again";
+          return false;
+        }
+      }
+
+      function validateEID() {
+        const EIDInput = document.getElementById("EID");
+        const EIDError = document.getElementById("EIDError");
+        const EID = EIDInput.value;
+
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (emailPattern.test(EID) && teamName !== "") {
+          EIDError.textContent = "";
+          return true;
+        } else {
+          EIDError.textContent = "Invalid Email";
+          return false;
+        }
+      }
+
+      document
+        .getElementById("teamName")
+        .addEventListener("input", validateTeamName);
+      document.getElementById("TCN").addEventListener("input", validateTCN);
+      document.getElementById("EID").addEventListener("input", validateEID);
+      document.getElementById("PASS").addEventListener("input", validatePASS);
+      document.getElementById("RPASS").addEventListener("input", validateRPASS);
+      document
+        .getElementById("teamRegistrationForm")
+        .addEventListener("submit", function (event) {
+          if (!validateTeamName()) {
+            event.preventDefault();
+          }
+          else
+          {
+            let str1 = "Team Name:" + document.getElementById("teamName").value + "\n";
+            let str2 = "Team Email ID:" + document.getElementById("EID").value+ "\n"; 
+            let str4 = str1.concat(str2.toString());
+            alert(str4);
+          }
+        });
+    </script>
+  </body>
+</html>

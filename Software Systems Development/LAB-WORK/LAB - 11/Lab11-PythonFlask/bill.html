@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Bill</title>
+</head>
+<body>
+    <h1>Customer Bill</h1>
+    <p>Customer ID: {{ customer_id }}</p>
+
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Item Price</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.item_name }}</td>
+            <td>${{ item.item_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>Total Amount: ${{ total_amount }}</p>
+</body>
+</html>

@@ -1,0 +1,295 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#searchBox {
+    margin-top: 10px;
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+
+/*main styling*/
+html,body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.75em;
+}
+
+a{
+    color:#fff;
+    text-decoration: none;
+}
+
+h1,h2,h3{
+   padding-bottom: 20px;  
+}
+
+p{
+    margin: 10px 0;
+}
+
+/*-------------------utiliyty class------------------*/
+  .container{
+      margin: auto;
+      max-width: 1200px;
+      overflow: auto;
+      padding: 0 20px;
+  }
+
+  .text-primary{
+      color: #f7c08a;
+  }
+  
+  .lead{
+      font-size: 21px;
+  }
+   
+  .clr{
+      clear: both;
+  }
+  .btn{
+      display: inline-block;
+      font-size: 19px;
+      color: #fff;
+      background-color: #333;
+      padding: 13px 20px;
+      border:none;
+      cursor: pointer;
+  }
+  
+  .btn-light{
+      background: #f4f4f4;
+      color:#333;
+  }
+  .btn:hover{
+      background: #f7c08a;
+      color: #333;
+  }
+
+  .bg-dark{
+      background: #001724;
+      color: #fff;
+      overflow: auto
+  }
+
+  .bg-light{
+    background: #f4f4f4;
+    color: #333;
+    overflow: auto
+}
+
+.bg-primary{
+    background: #f7c08a;
+    color: #333;
+    overflow: auto
+}
+
+.py-1{padding: 10px 0;}
+
+.py-2{padding: 20px 0;}
+
+.py-3{padding: 30px 0;}
+
+.py-4{padding: 50px 0;}
+
+
+
+/*--------------------Navbar--------------------------*/
+#navbar{
+    position: sticky;
+    background-color: black;
+    color: #fff;
+    list-style: none;
+    overflow: auto;
+}
+
+#navbar h1{
+     float: left;
+     padding-top: 20px;
+}
+
+#navbar li{
+    float: right;
+    list-style: none;
+}
+
+#navbar li a{
+    color: #fff;
+    display: block;
+    padding:20px;
+    text-align: center;
+    margin-right: 20px; 
+}
+
+#navbar li a:hover,#navbar li a.current{
+    color: coral;
+    background-color: #333;
+}
+
+/*-----------------showcase box------------------------*/
+
+#showcase {
+     background: url('../resources/Background.jpg') no-repeat center center/cover;
+     height: 600px;
+
+}
+
+#showcase .showcase-content {
+    color: #fff;
+    text-align: center;
+    padding-top: 155px;
+}
+
+#showcase .showcase-content h1{
+       font-size: 60px;
+       line-height: 1.2em;
+}
+
+#showcase .showcase-content p{
+    padding-bottom: 20px;
+    line-height: 1.7em;
+}
+
+/*----------Home info-------------------*/
+
+#home-info{
+    height: 600px;
+}
+
+#home-info .info-img{
+    border-radius: 5%;
+    float:left;
+    width: 50%;
+    background: url('../resources/Charu_Sharma_profile.png') no-repeat center center ;
+    min-height:100%;
+}
+
+#home-info .info-content{
+    float:right;
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    padding: 50px 30px;
+    overflow: hidden;
+    border-radius: 10%;
+}
+
+#home-info .info-content p{
+    font-size: 20px;
+    padding-bottom: 25px;
+    line-height: 1.5em;
+}
+
+/*----------------boxes------------*/
+ .box{
+     float: left;
+     width: 33.3%;
+     padding:50px;
+     text-align: center;
+ }
+
+ .box i{
+     margin-bottom: 20px;
+ }
+/*----------------footer-------------*/
+#main-footer{
+    background-color:  #001724;
+    text-align: center;
+    color: #fff;
+    padding: 15px;
+}
+ #references {
+    text-decoration: none;
+    list-style: none;
+     padding: 20px;
+ }
+/*------------------------------------------------------------------*/
+
+/*----------------about info--------------*/
+ #about-info .info-right{
+      float:right;
+      width: 50%;
+      min-height: 100%;
+ }
+
+ #about-info .info-right img{
+    display: block;
+    margin: auto;
+    width: 70%;
+    border-radius: 50%;
+ }
+
+ #about-info .info-left{
+     float: left;
+     width: 50%;
+     min-height: 100%;
+ }
+
+ #about-info h1{
+     font-size: 45px;
+ }
+ /*-----------------Testimonials------------*/
+ #recent{
+    background-color: #01467c;
+    padding-top: 80px;
+    padding: 50px;
+}
+
+#recent  h2{
+    color: #fff;
+    text-align: center;
+    padding-bottom: 40px;
+    font-size: 35px;
+}
+
+#testimonials .testimonial img{
+    width:100px;
+    float: left;
+    border-radius: 50%;
+    margin-right: 20px;
+    padding: 10px;
+}
+#testimonials .testimonial p{
+    padding: 10px;
+}
+
+#testimonials .testimonial{
+    margin-left: 40px;
+    margin-right: 25px;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+/*-----------------contacts--------------*/
+
+#contact{
+    line-height: 2.5em;
+}
+
+#contact .details{
+        display: block;
+}
+
+#contact h1{
+    font-size: 35px;
+    margin-top: 40px;
+    display: block;
+}
+
+#contact .in{
+    padding: 6px;
+    width: 50%;
+}
+
+#contact .on{
+    padding: 90px;
+}

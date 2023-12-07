@@ -1,0 +1,14 @@
+.center-div {
+    width : fit-content;
+    margin : auto;
+    margin-top: 10%;
+    padding: 4%;
+    background-color: rgba(254, 254, 254, 0.863);
+    border-radius: 3%;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.352);
+    font-weight: bold;
+}
+
+body {
+    background: linear-gradient(90deg, rgb(173, 179, 176) 0%, rgb(10, 10, 8) 0%, rgb(148, 156, 156) 100%);
+}

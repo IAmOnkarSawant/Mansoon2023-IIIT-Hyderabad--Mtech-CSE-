@@ -1,0 +1,76 @@
+What is Xen?
+This paper presents Xen, an x86 virtual machine monitor which
+allows multiple commodity operating systems to share conventional
+hardware in a safe and resource managed fashion, but without sac-
+rificing either performance or functionality. This is achieved by
+providing an idealized virtual machine abstraction to which oper-
+ating systems such as Linux, BSD and Windows XP, can be ported
+with minimal effort.
+
+Xen is VMM(virtual machine monitor)
+
+Challenges??
+Xen allows you to run different operating systems on one computer. This can be tricky because the computer's hardware is not naturally designed for this. For example, some instructions from the hardware might not work properly when virtualized.
+
+What is Xen doing?
+Xen aims to provide performance isolation between VMs, ensuring that one VM's activities don't significantly affect others. It multiplexes physical resources at the level of entire operating systems, allowing various guest operating systems to coexist without mandating a specific application interface.
+
+Xen's approach provides flexibility for users to run unmodified binaries and create customized execution environments. This reduces configuration issues between services and applications.
+
+How does Xen do that ?
+1) Xen acts as an intermediary layer between the physical hardware of your computer (the CPU, memory, disks, etc.) and the multiple operating systems you want to run.
+
+2)Hypervisor: Xen includes a component called a "hypervisor." Think of it as the supervisor or manager of your computer's resources. It's responsible for creating and managing virtual machines (VMs), which are like separate, isolated containers for operating systems and their applications.
+
+3)Resource Allocation: The hypervisor controls how the physical hardware resources are allocated to each VM. It divides the CPU's processing power, memory, and disk space among the VMs. Each VM believes it has exclusive access to these resources, even though they are shared among multiple VMs.
+
+4)Isolation: Xen ensures that the VMs are isolated from each other. This means that if one VM crashes or has a problem, it won't affect the others. It also prevents one VM from accessing the memory or data of another VM unless explicitly allowed.
+
+5)Emulated Hardware: Each VM sees a virtualized version of hardware, which is emulated by the hypervisor. This virtual hardware looks and acts like real hardware to the guest operating systems. This way, different operating systems can run, each thinking they have their dedicated hardware.
+
+6) Paravirtualization: Xen uses a different approach called "paravirtualization." It's a bit like having a virtual version of the hardware that's similar but not exactly the same as the real hardware. This makes things work faster, but it requires some changes to the guest operating systems.
+
+While there is some overhead involved in virtualization, modern hardware and hypervisor software are optimized to minimize this overhead, allowing VMs to run efficiently and with good performance.
+
+MEMORY MANAGEMENT BY XEN:
+We know that, The operating systems running on the computer are responsible for managing part of the memory. But as multiple are running this can cause a conflict
+
+Xen also keeps a part of memory just for itself (like its own office space), and the operating systems can't touch it. But this doesn't cause problems because it doesn't interfere with how regular programs work
+
+Xen puts some rules in place to keep things safe and separate. For example, it only lets an operating system use the memory it owns, and it doesn't allow them to write to certain parts of memory. The operating systems can ask Xen to make changes in batches to save time.
+
+When an operating system needs to manage its own part of memory (like when it's creating a new program), it sets up something called a "page table." It asks Xen for permission to do this. After that, the operating system can't change this memory without Xen saying it's okay.
+
+CPU MANAGEMENT BY XEN:
+Imagine there are different levels of power in a computer. The operating system usually has the highest level (level 0), and regular programs are at a lower level (level 3). Some computers only have two levels, so the operating system shares the same level as regular programs.
+
+To make this work, the operating system needs to move to a lower level of power. It does this by setting up a system where it can't directly control everything anymore. Instead, it asks the hypervisor for permission when it needs to do something special.
+
+Some commands are powerful and need to be checked by the hypervisor before they're allowed to run. The hypervisor makes sure that only it can run these powerful commands, not the operating system or regular programs.
+
+When something goes wrong, like an error or a program trying to do too much, the hypervisor helps fix it. It does this by taking control and making sure the problem doesn't harm the computer.
+
+I/0 MANAGEMENT: 
+paravirtualization
+
+Communication Method: Xen uses a method like passing notes between different areas of the computer. This method is very fast and allows different parts of the computer to talk to each other without getting in each other's way.
+Bitmap of Pending Events: Instead of constantly bugging a part of the computer with messages, Xen uses a map to keep track of what important things need attention. When something important happens, it marks it on the map, and the other part can check the map when it's ready.
+
+
+
+NOW,
+Xen itself only provides basic commands. These commands are available through an interface that certain authorized parts of the computer can use. Xen doesn't get involved in making complex decisions like who gets how much CPU time or what kind of data can be sent over the network.
+
+zen divides the responsibilities of the computer into basic operations handled by Xen itself and higher-level decisions managed by special software (Domain0). This setup makes it easier to control how the computer's resources are used and who can do what, all while keeping things organized and secure.Basically it helps Xen when making a new domain
+
+DETAILED DESIGN:
+Control Transfer: Hypercalls and Events
+
+    Hypercalls: These are like special requests that a domain (like a computer program) can make to Xen (the hypervisor, a super-manager). It's like a domain asking Xen to do something special, such as changing memory settings. Xen checks if it's okay and then does it.
+
+    Events: This is how Xen tells domains about important things happening. It's like Xen giving a heads-up to a domain about something like receiving data over the network. Domains use these events to know when to take action.
+    
+Data Tranfer: using I/0 rings, its like a ring of data, when domain need to send something it puts it in ring and then Xen sees it, like conveyor belt.
+
+CPU scheduling: It uses a smart system called Borrowed Virtual Time to decide which domain gets to use the CPU next. This keeps everything running smoothly and fairly.
+

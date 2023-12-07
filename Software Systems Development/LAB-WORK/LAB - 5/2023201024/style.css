@@ -1,0 +1,132 @@
+#index 
+{
+    background-color: #b4b4b4;
+    padding-top: 10%;
+}
+
+#video 
+{
+    background-color: #e7e3e3;
+    padding-top: 3%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #b5b5b5; /* You can adjust the color and thickness of the outline */
+}
+
+input:focus,
+input:active {
+    border-color: transparent;
+    border-bottom: 2px solid #7f7b7b;
+}
+
+label {
+    font-size: 22px;
+}
+
+input {
+    width:20%;
+    height: 0%;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 7px 0;
+}
+
+.button {
+    margin-top: 30px;
+    padding: 15px 22px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #0be72c;
+    font-size: 18px;
+    color: #ffffff;
+  }
+
+  .button:hover {
+    scale: 1.1;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #00be1c;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  #grad {
+    padding-top: 50px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(191, 255, 112));
+    width: 50%;
+    height: 500px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  #grad label{
+    margin-top: 10px;
+  }
+
+  a{
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #0be72c;
+    font-size: 18px;
+    color: #ffffff;
+    padding: 15px 22px;
+    text-decoration: none;
+    position: absolute;
+    right: 0px;
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  a:hover {
+    scale: 1.1;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #00be1c;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  #navbar > h1{
+    display: inline-block;
+  }
+
+
+  .tablestyle{
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 16px;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(96, 96, 96, 0.15);
+        padding: 5px;
+        border-radius: 10px;
+  }
+
+.tablestyle th,
+.tablestyle td {
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 12px 15px;
+    text-align: left;
+    margin: 1px;
+   
+}
+
+.desc{
+    max-width: 50%;
+    font-weight: bold;
+    padding: 10px;
+}
+
+iframe{
+    border-radius: 10px;
+}
+  

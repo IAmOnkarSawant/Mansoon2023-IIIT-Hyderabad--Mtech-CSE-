@@ -1,0 +1,392 @@
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+**Process Scheduling and Basic Concepts:**
+- CPU scheduling in modern multiprogrammed OS.
+- Earlier, single processors executed processes sequentially.
+
+**Execution Cycle:**
+- Processes alternate between CPU bursts and I/O bursts.
+- Typically end with a CPU burst.
+- Histograms show many short CPU bursts and few long ones.
+- Two process types: 
+   1. CPU-bound (long CPU bursts).
+   2. I/O-bound (many short CPU bursts).
+
+**CPU Scheduler:**
+- Selects processes ready for execution.
+- Decisions made when:
+   1. Process switches to waiting state (I/O) - Voluntary.
+   2. Process switches to ready state (interrupt) - Forced.
+   3. Process switches from waiting to ready (I/O completion) - Forced.
+   4. Process terminates - Voluntary.
+- Modern OSs prefer preemptive scheduling for performance.
+
+**Dispatcher:**
+- Gives CPU control to the process selected by the short-term scheduler.
+- Involves:
+   - Switching context.
+   - Switching to user mode.
+   - Jumping to the proper location in the user program.
+- Dispatch latency: Time to stop one process and start another.
+
+**Scheduling Criteria (CTTWR):**
+1. CPU Utilization: Keep CPU busy.
+2. Throughput: Maximize processes/unit time.
+3. Turnaround Time: Completion time - submission time.
+4. Waiting Time: Total time in the ready queue.
+5. Response Time: First scheduling - submission.
+
+**Optimization Criteria:**
+- Maximize:
+   - CPU utilization.
+   - Throughput.
+- Minimize:
+   - Turnaround time.
+   - Waiting time.
+   - Response time.
+
+**Scheduling Algorithms:**
+1. FIFO:
+   - Non-preemptive.
+   - Pros: Simple.
+   - Cons: More waiting time, convoy effect, starvation.
+
+2. SJF (Shortest Job First):
+   - Ideal scheduling.
+   - Prediction needed for next CPU burst.
+   - Approximation: Running average of burst times.
+
+3. Priority:
+   - Preemptive or non-preemptive.
+   - Risk of starvation: Solved with aging (increase priority).
+
+4. RR (Round Robin):
+   - Preemptive.
+   - Time quantum determines behavior.
+   - Rule of thumb: 80% CPU bursts shorter than quantum.
+
+**Multi-Level Scheduling:**
+-->Ready queue is partitioned into several separate queues:
+Example: foreground (interactive); background (batch)
+
+-->Each queue has its own scheduling algorithm,
+foreground – RR
+background – FCFS.
+
+-->Scheduling must be done between the queues.
+ Fixed priority scheduling -  Possibility of starvation.
+ Time slice – each queue gets a certain amount of CPU time which it can
+schedule amongst its processes; i.e., 80% to foreground in RR
+ 20% to background in FCFS.
+
+--->Each queue has absolute priority over lower-priority
+queues..
+
+------>Another policy is time slice
+
+MULTILEVEL FEEDBACK QUEUE 
+
+--->Normally, when the multilevel queue scheduling algorithm is used, processes
+are permanently assigned to a queue when they enter the system. If there
+are separate queues for foreground and background processes, for example,
+processes do not move from one queue to the other, since processes do not
+change their foreground or background nature. This setup has the advantage
+of low scheduling overhead, but it is inflexible.
+
+---->The multilevel feedback queue scheduling algorithm, in contrast, allows
+a process to move between queues. The idea is to separate processes according
+to the characteristics of their CPU bursts. If a process uses too much CPU time,
+it will be moved to a lower-priority queue. This scheme leaves I/O-bound and
+interactive processes—which are typically characterized by short CPU bursts
+—in the higher-priority queues. In addition, a process that waits too long in a
+lower-priority queue may be moved to a higher-priority queue. This form of
+aging prevents starvation.
+
+---->An entering process is put in queue 0. A process in queue 0 is given a time
+quantum of 8 milliseconds. If it does not finish within this time, it is moved
+to the tail of queue 1. If queue 0 is empty, the process at the head of queue 1 is
+given a quantum of 16 milliseconds. If it does not complete, it is preempted and
+is put into queue 2. Processes in queue 2 are run on an FCFS basis but are run
+only when queues 0 and 1 are empty. To prevent starvation, a process that waits
+too long in a lower-priority queue may gradually be moved to a higher-priority
+queue. (AGING).
+
+In general, a multilevel feedback queue scheduler is defined by the follow-
+ing parameters:
+• The number of queues
+• The scheduling algorithm for each queue
+• The method used to determine when to upgrade a process to a higher-
+priority queue
+• The method used to determine when to demote a process to a lower-
+priority queue
+• The method used to determine which queue a process will enter when that
+process needs service.
+
+
+THREAD SCHEDULING.
+
+--> diff bw user and kernel level threads. 
+
+--> Many-to-one and many-to-many models, thread library
+schedules user-level threads to run on LWP
+---> Known as process-contention scope (PCS) since scheduling
+competition is within the process
+--> Typically done via priority set by programmer.
+
+-->Kernel thread scheduled onto available CPU is system-
+contention scope (SCS) – competition among all threads
+in system
+
+PTHREAD SCHEDULING
+API allows specifying either PCS or SCS during
+thread creation.
+
+         MULTIPLE PROCESS SCHEDULING
+         
+Asymmetric multiprocessing – only one processor accesses
+the system data structures, alleviating the need for data sharing
+-->Master server,
+--> simple to implement
+
+Symmetric multiprocessing (SMP) – each processor is self-
+scheduling, all processes in common ready queue, or each has
+its own private queue of ready processes.
+
+       ISSUES
+--> Processor affinity – process has affinity for processor
+on which it is currently running
+ 
+---> soft affinity: Efforts will be made to run the process on
+the same CPU, but not guaranteed.
+
+--> hard affinity: Process do not migrate among the
+processors.
+
+  NUMA
+  
+---> fig is important.
+
+-->CPU has faster access to some parts
+of main memory than to other parts. It occurs in the systems with combined
+CPU and memory boards.
+
+ MULTIPROCESSOR SCHEDULING: LOAD BALANCING
+ 
+ -->attempts to keep the workload evenly
+distributed across all the processors in an SMP system.
+
+--->Push migration
+ A specific process periodically checks the load on
+each processor and evenly distributes the
+processes.
+
+Pull migration
+-->Idle processor pulls a waiting task from a busy
+processor.
+
+MULTICORE PROCESSORS
+
+-->place multiple processor  cores on same physical chip.
+
+-->Multiple threads per core also growing.
+
+Memory stall: When a processor accesses main
+memory, it spends significant amount of time in
+waiting.
+
+Takes advantage of memory stall to make
+progress on another thread while memory retrieve
+happens
+
+--> ref fig in slide.
+
+OUT OF ORDER EXECUTION
+
+-->out-of-order execution (or more formally dynamic execution) is a
+paradigm used in most high-performance central processing units to
+make use of instruction cycles that would otherwise be wasted.
+
+-->a processor executes instructions in an order
+governed by the availability of input data and execution units, rather
+than by their original order in a program.
+
+--> ALGORTITHM EVALUATION
+
+-->To select an algorithm we have to select relative importance of
+these measures.
+
+Maximize CPU utilization under the constraint that maximum response
+time is one second.
+
+Maximize throughput such that turnaround time is linearly proportional to
+total execution time.
+
+following methods are followed for evaluation
+
+-->Analytical modeling
+
+1. Analytic evaluation uses the given algorithm and the system workload to
+produce a formula or number that evaluates the performance of the algorithm
+for that workload.
+
+
+
+Deterministic modeling
+
+1. Predetermined workload and defines the performance of each algorithm
+for that workload.
+
+2.  fast..negative depends on load
+
+Queuing models
+
+No predetermined workload
+
+distributions of CPU and I/O busts can be approximated.
+
+Result is a probability of next CPU burst.
+
+Little’s law: n=λ*W, where n= number of processes in the queue, λ is arrival rate,
+and w is average waiting time.
+
+
+-->Simulation
+
+1. use simulation for accurate evaluation.
+
+2. Involve programming model
+
+3. There is a simulation clock which is a variable.
+
+4. Whenever clock is changes, system state is modified
+
+5. Random number generator can be used to generate data sets by
+following appropriate distributions.
+ Processes
+ CPU-burst times
+ Arrivals
+ Departures
+
+Trace can be used which is created by monitoring the real system
+
+check fig.
+
+
+-->Implementation
+
+1. simulation also -limited accuracy.
+
+2. Correct way is code the algorithm and run in an OS.
+
+            REAL TIME SCHEDULING
+            
+1. Hard Realtime System --> required to complete critical task within a guaranteed amount of time.
+
+2. Soft Realtime System -->critical processes
+receive priority over less fortunate ones.
+
+Hard Realtime system
+
+1. Process is submitted along with a statement of amount of
+time in which it needs to complete or I/O.
+
+2. Scheduler may accept or reject the process
+
+3. The main concept is reservation ---> (scheduler must know exactly how long each OS
+function takes to perform.)
+
+4. it has a special purpose software running for this specially.
+
+Soft RealTime system.
+
+--> critical process should receive priority over
+lesser priority processes.
+
+---> Unfair allocation of resources may result in longer delays or
+even starvation.
+
+-->A soft real-time system is nothing but a general purpose
+OS that can also support multimedia, high-speed
+interactive graphics.
+
+-->System must have priority scheduling.
+
+-->Real time processes must receive highest priority and priority should
+not degrade over time.
+
+--> Aging is disallowed.
+
+--> dispatch latency must be minimized.
+
+Implementing Real-Time Operating
+Systems
+
+--> In general, real-time operating systems must provide:
+(1) Preemptive, priority-based scheduling
+(2) Preemptive kernels
+(3) Latency must be minimized
+
+MINIMIZING LATENCY
+
+EVENT LATENCY
+
+Event latency is the amount of time from when an event occurs to
+when it is serviced.
+
+check fig
+
+INTERRUPT LATENCY
+
+Interrupt latency is the period of time from when an
+interrupt arrives at the CPU to when it is serviced.
+
+check fig.
+
+
+DISPATCH LATENCY
+
+Dispatch latency is the amount of time required for the scheduler
+to stop one process and start another.
+
+
+DIFFERENT TYPES OF CPU SCHEDULING FOR MULTIPROCESSORS
+
+
+REAL TIME CPU SCHEDULING
+
+check fig.
+
+Periodic processes require the CPU at specified
+intervals
+
+p is the duration of the period
+ d is the deadline by when the process must be
+serviced
+ t is the processing time
+
+RATE MONOTONIC SCHEDULING
+Shorter periods = higher priority;
+ Longer periods = lower priority
+
+EDFS
+
+Priorities are assigned according to deadlines:
+the earlier the deadline, the higher the priority;
+the later the deadline, the lower the priority.
+
+PROPORTIONAL SHARE SCHEDULING
+shares are allocated among all processes in the system.
+ An application receives N shares where N < T.
+ This ensures each application will receive N / T of the total
+processor time
+
+PTHREAD SCHEDULING
+
+1. this api provides functions for managing real time threads.
+
+2. 2 scheduling classes for realtime threads 
+   -> fcfs strategy with FIFO queue.
+   ->same fifo , but time slices for equal priority.
+
+

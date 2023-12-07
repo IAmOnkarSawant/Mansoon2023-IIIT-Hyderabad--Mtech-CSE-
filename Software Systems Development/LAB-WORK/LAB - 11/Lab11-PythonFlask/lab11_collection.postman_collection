@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "75589ba3-360b-4abb-a12f-377621eac000",
+		"name": "Lab11 Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "View Menu List API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/admin/menu",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Item to Menu API",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"item_id\": \"3\",\r\n    \"item_name\": \"Kadhai Paneer\",\r\n\t\"item_price\": 450\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/admin/menu",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item to Menu API",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"item_id\": \"3\",\r\n    \"item_name\": \"Kadhai Paneer\",\r\n\t\"item_price\": 450\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/admin/menu",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"menu"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Waiting Staff",
+			"item": [
+				{
+					"name": "View Customer Orders API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/staff/orders",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"staff",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Order and Current bill amount API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/staff/bill?customer_id=12345",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"staff",
+								"bill"
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "View Current Order API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							},
+							{
+								"key": "customer_id",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/customer/order",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customer",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item to Order API",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "customer_id",
+								"value": "12345",
+								"type": "text"
+							},
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"item_id\": \"3\",\r\n  \"item_name\": \"Kadhai Paneer\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/customer/order/add",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customer",
+								"order",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Item from Order API",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "customer_id",
+								"value": "12345",
+								"type": "text"
+							},
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/customer/order/remove/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customer",
+								"order",
+								"remove",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Render Bill API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "customer_id",
+								"value": "12345",
+								"type": "text"
+							},
+							{
+								"key": "rootOrg",
+								"value": "Restuarant",
+								"type": "text"
+							},
+							{
+								"key": "org",
+								"value": "Shaandar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/customer/bill",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customer",
+								"bill"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

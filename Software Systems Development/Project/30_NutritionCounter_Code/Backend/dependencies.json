@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "name": "backend",
+  "dependencies": {
+    "bcrypt": {
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/bcrypt/-/bcrypt-5.1.1.tgz",
+      "overridden": false
+    },
+    "csv-parser": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/csv-parser/-/csv-parser-3.0.0.tgz",
+      "overridden": false
+    },
+    "dotenv": {
+      "version": "16.3.1",
+      "resolved": "https://registry.npmjs.org/dotenv/-/dotenv-16.3.1.tgz",
+      "overridden": false
+    },
+    "escape-string-regexp": {
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz",
+      "overridden": false
+    },
+    "express": {
+      "version": "4.18.2",
+      "resolved": "https://registry.npmjs.org/express/-/express-4.18.2.tgz",
+      "overridden": false
+    },
+    "jsonwebtoken": {
+      "version": "9.0.2",
+      "resolved": "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.2.tgz",
+      "overridden": false
+    },
+    "mongoose": {
+      "version": "7.5.2",
+      "resolved": "https://registry.npmjs.org/mongoose/-/mongoose-7.5.2.tgz",
+      "overridden": false
+    },
+    "multer": {
+      "version": "1.4.5-lts.1",
+      "resolved": "https://registry.npmjs.org/multer/-/multer-1.4.5-lts.1.tgz",
+      "overridden": false
+    },
+    "validator": {
+      "version": "13.11.0",
+      "resolved": "https://registry.npmjs.org/validator/-/validator-13.11.0.tgz",
+      "overridden": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+First time initialization
+
+1> go to folder where you cloned project
+2> git init
+3> git remote -v
+4> git remote add origin https://github.com/IAmOnkarSawant/SSD_PROJECT.git
+5> git remote -v
+6> git fetch origin
+   enter credentials to continue
+7> git branch -r -> (able to see main branch)
+
+
+=============================================================
+||   when you want to extract all dependencies into file   ||
+||                                                         ||
+||   > npm list --depth=0 --json > dependencies.json       ||
+||   > npm init --yes                                      ||
+||                                                         ||
+=============================================================
+
