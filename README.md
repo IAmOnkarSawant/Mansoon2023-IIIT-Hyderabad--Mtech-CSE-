@@ -2,7 +2,7 @@
 
 Hey there! 👋
 
-Welcome to the Monsoon 2023 semester at IIIT Hyderabad! Exciting times ahead, right? As M.Tech-CSE students, we've got some awesome professors and teaching assistants who've shared loads of PDFs and PPTs, helping us navigate this academic adventure.
+Welcome to the Monsoon 2023 semester at IIIT Hyderabad! As M.Tech-CSE students, we've got some awesome professors and teaching assistants who've shared loads of PDFs and PPTs, helping us navigate this academic adventure.
 
 ## What's Inside? 📚
 
